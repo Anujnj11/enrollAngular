@@ -1,0 +1,99 @@
+<button (click)="openForm()" class="ui secondary button">
+    Enroll Now
+</button>
+
+<div class="ui tiny test modal" id="showForm">
+    <div class="header">
+        <div class="ui grid">
+            <div class="left floated six wide column">
+                Let's start
+            </div>
+            <div class="right floated six wide column">
+                {{counterForm + 1}}/4
+                <div *ngIf="enrollForm.touched && enrollForm.invalid && errorMsg"
+                    class="ui circular danger small icon button" data-position="right center" id="errorInfo"
+                    [attr.data-content]="errorMsg">
+                    <i class="info small icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <form [formGroup]="enrollForm" (keydown)="keyDownEvent($event)" novalidate>
+            <div class="ui form">
+
+                <div *ngIf="counterForm == 0">
+                    <h4 class="ui header">How should we address you?</h4>
+                    <label>Enter Fullname</label>
+                    <input placeholder="Enter Fullname" type="text" formControlName="fullname">
+                    <div *ngIf="f.fullname.touched && f.fullname.invalid" class="ui pointing red basic label">
+                        Enter FullName
+                    </div>
+                </div>
+                <div *ngIf="counterForm == 1">
+                    <h4 class="ui header">It's easy to connect with phone</h4>
+                    <label>Phone Number</label>
+                    <input formControlName="mobileno" placeholder="Phone Number" maxlength="10" type="text">
+                    <div *ngIf="f.mobileno.touched && f.mobileno.errors &&  f.mobileno.hasError('pattern')"
+                        class="ui pointing red basic label">
+                        Invalid Phone Number!
+                    </div>
+                    <div *ngIf="f.mobileno.touched && f.mobileno.invalid && !f.mobileno.hasError('pattern')"
+                        class="ui pointing red basic label">
+                        Enter Phone Number
+                    </div>
+                </div>
+                <div *ngIf="counterForm == 2">
+                    <h4 class="ui header">Keep notify by providing us Email</h4>
+                    <label>Email Id</label>
+                    <input formControlName="emailid" placeholder="Email Id" type="email">
+                    <div *ngIf="f.emailid.touched && f.emailid.errors &&  f.emailid.hasError('pattern')"
+                        class="ui pointing red basic label">
+                        Invalid Email Id!
+                    </div>
+                    <div *ngIf="f.emailid.touched && f.emailid.invalid" class="ui pointing red basic label">
+                        Invalid Email Id!
+                    </div>
+                </div>
+                <div *ngIf="counterForm == 3">
+                    <h4 class="ui header">Help us to know, how can we help you</h4>
+                    <label>Message</label>
+                    <textarea formControlName="message" rows="2" spellcheck="false"></textarea>
+                    <div *ngIf="f.message.touched && f.message.errors" class="ui pointing red basic label">
+                        Enter message
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+
+        <div *ngIf="counterForm !=0" (click)="changeCounter(false)" class="ui circular secondary icon button">
+            <i class="angle left icon"></i>
+        </div>
+
+        <div *ngIf="counterForm != 3" (click)="changeCounter(true)" class="ui circular secondary icon button">
+            <i class="angle right icon"></i>
+        </div>
+        <button *ngIf="counterForm == 3" (click)="enrollMe()" [disabled]="enrollForm.invalid"
+            [ngClass]="apiCalling ? 'positive ui button loading' : 'positive ui button'">Enroll Me</button>
+
+    </div>
+</div>
+
+
+
+
+<div class="ui tiny test modal" id="submittedForm">
+    <div class="header">
+        Thank You!!
+    </div>
+    <div class="content">
+        Will get back to you soon!!
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Okay
+        </div>
+    </div>
+</div>
