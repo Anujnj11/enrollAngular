@@ -46,7 +46,11 @@
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   },
+<<<<<<< HEAD
   "engines": {
+=======
+ "engines": {
+>>>>>>> 6edf20ade6369cb209df88c4c48fe4f8a91259d7
     "node": "10.18.1",
     "npm": "6.13.4",
     "express": "^4.17.1"
