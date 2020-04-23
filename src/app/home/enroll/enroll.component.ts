@@ -19,6 +19,7 @@ export class EnrollComponent implements OnInit {
   //Is api calling show loader if true
   apiCalling = false;
 
+
   constructor(private fb: FormBuilder, private enrollService: EnrollService) { }
 
   ngOnInit() {
@@ -76,10 +77,12 @@ export class EnrollComponent implements OnInit {
       this.apiCalling = !this.apiCalling;
       let reqBody = this.enrollForm.value;
       console.log(reqBody);
-      this.enrollService.getGoogle().subscribe((res) => {
+      this.enrollService.submitEnroll(reqBody).subscribe((res) => {
         console.log(res);
         $('#showForm').modal('hide');
         $('#submittedForm').modal('show');
+      }, (err) => {
+        this.apiCalling = !this.apiCalling;
       })
     }
   }

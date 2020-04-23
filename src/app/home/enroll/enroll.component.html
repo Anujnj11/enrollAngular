@@ -10,7 +10,7 @@
             </div>
             <div class="right floated six wide column">
                 {{counterForm + 1}}/4
-                <div *ngIf="enrollForm.touched && enrollForm.invalid && errorMsg"
+                <div *ngIf="enrollForm.touched && enrollForm.invalid && errorMsg != ''"
                     class="ui circular danger small icon button" data-position="right center" id="errorInfo"
                     [attr.data-content]="errorMsg">
                     <i class="info small icon"></i>
