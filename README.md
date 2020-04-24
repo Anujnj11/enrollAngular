@@ -26,6 +26,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - All services should be register at Shared module and exported according to that.
   - Request Interceptor should be a part of every angular project where we can place network activity ie before calling any api which include adding baseUrl and token if required.
 
+* Used Reactive form for user input
+  - Which helps to maintained form validation and everything seamless
+
 ## Start server
 
 Run `ng s -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
